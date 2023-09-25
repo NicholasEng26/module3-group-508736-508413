@@ -12,4 +12,5 @@
     </header>
     <?php
         include 'navbar.php';
+        require 'database/config.php';
     ?>
