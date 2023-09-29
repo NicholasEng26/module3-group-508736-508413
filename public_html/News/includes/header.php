@@ -8,7 +8,7 @@
 </head>
 <body>
     <header>
-       Head  <!-- Your website header content -->
+     <!-- Your website header content -->
     </header>
     <?php
         include 'navbar.php';
