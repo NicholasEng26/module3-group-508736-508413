@@ -5,7 +5,7 @@
 
 <section id="login">
     <h3>Please login here</h3>
-    <form>
+    <form action = >
         <label for = "userName">User Name:</label><br>
         <input type = "text" id = "userName" name="userNameInput"/><br>
         <label for = "password">Password:</label><br>
