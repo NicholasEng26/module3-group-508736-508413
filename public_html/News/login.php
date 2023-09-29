@@ -5,7 +5,7 @@
 
 <section id="login">
     <h3>Please login here</h3>
-    <form action = >
+    <form action ="auth.php" method = "GET">
         <label for = "userName">User Name:</label><br>
         <input type = "text" id = "userName" name="userNameInput"/><br>
         <label for = "password">Password:</label><br>
@@ -16,7 +16,7 @@
 
 <section id="registration">
     <p>Don't have an account? Please register a new one</p>
-    <form>
+    <form action ="regCheck.php" method = "GET">
         <label for = "userName">User Name:</label><br>
         <input type = "text" id = "userName" name="userNameInput"/><br>
         <label for = "password">Password:</label><br>

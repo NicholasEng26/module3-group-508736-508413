@@ -1,0 +1,96 @@
+body {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    margin-top: 2ch;
+    margin-left: 8ch;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* HOME PAGE CSS */
+#home-body{
+    text-align: center;
+}
+
+.category{
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+
+#category_name {
+    text-align: left;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: var(--secondary-color);
+}
+/* Homepage Flexbox */
+.home-flex-container {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    justify-content: space-between;
+  }
+
+  #category-entry {
+    flex: auto;
+    margin: 0%, 0%, 10%, 10%;
+}
+  
+/* .home-flex-container > div {
+    background-color: #f1f1f1;
+    margin: 100px;
+    padding: 20px;
+    font-size: 30px;
+} */
+
+/* END OF HOME PAGE CSS */
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* background-color: #333; */
+}
+
+/* Navbar */
+
+nav li {
+    float: left;
+}
+  
+nav li a {
+    display: block;
+    color: var(--secondary-color);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+ #navbar li a:hover {
+    background-color: var(--tertiary-color);
+ }
+
+ :root{
+    --primary-color: white;
+    --secondary-color: #212121;
+    --tertiary-color: grey;
+ }
+
+ .dark-mode {
+    --primary-color: #121212;
+    --secondary-color: #fff;
+    --tertiary-color: grey;
+ }
+
+
+/* Night Mode CSS */
+
+#darkmode_icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+nav el {
+    flex: 1;
+    text-align: right;
+}

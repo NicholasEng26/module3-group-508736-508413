@@ -6,5 +6,11 @@
     if($mysqli->connect_errno) {
         printf("Connection Failed: %s\n", $mysqli->connect_error);
         exit;
+    }else{
+    //    echo "
+    //     <script type=\"text/javascript\">
+    //     alert(\"connected!\");
+    //     </script>
+    // ";
     }
 ?>

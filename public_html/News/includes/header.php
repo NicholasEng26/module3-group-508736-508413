@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nick + Hanson News</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="includes/styles.css">
 </head>
 <body>
     <header>
