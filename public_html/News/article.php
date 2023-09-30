@@ -9,9 +9,11 @@
         <?php
             // Simulated article data
             $articleID = urldecode($_GET['article_id']);
+
+            //Pull article data from database
             $articleimage = "https://awlights.com/wp-content/uploads/sites/31/2017/05/placeholder-news.jpg";
             $articleTitle = "Sample Article Title";
-            $articleAuthor = "John Doe";
+            $articleAuthor = "Person Doe";
             $articleContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam massa vitae ex rhoncus sodales. Maecenas sit amet condimentum libero. Nullam vel odio ac arcu posuere blandit a in quam. Nulla facilisi. Phasellus vitae libero nec arcu venenatis varius. Fusce tristique elit at libero posuere, id condimentum libero volutpat. Sed non aliquam metus, non dapibus ex. Sed vel mi vel enim congue vulputate. Suspendisse potenti. Nulla luctus massa non risus bibendum, non vestibulum purus malesuada.";
 
             // Display the article
