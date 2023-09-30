@@ -52,20 +52,25 @@
     <section id="category">
         <h2 id="category_name"><u>Politics</u></h2>
         <div class="home-flex-container">
-            <?php 
-            for ($i = 0; $i < 4; ++$i){
-                echo "<section id=\"category-entry\">";
-                echo "<h3> $politicsArticles[$i][0] </h3>";
-                echo "<img src=$politicsArticles[0][1]) height=\"200vw\" width=\"350vw\" title=\"PLACEHOLDER\">";
-                echo "<p>$politicsArticles[$i][2]</p>";
-                echo "</section>";
-            }
-            ?>
-            
+            <section id="category-entry">
+                <h3><?php echo($politicsArticles[0][0]); ?></h3>
+                <img src=<?php echo($politicsArticles[0][1]); ?> height="200vw" width="350vw" title="PLACEHOLDEr">
+                <p><?php echo($politicsArticles[0][2]); ?></p>
+            </section>
             <section id="category-entry">
                 <h3><?php echo($politicsArticles[1][0]); ?></h3>
                 <img src=<?php echo($politicsArticles[1][1]); ?> height="200vw" width="350vw" title="PLACEHOLDEr">
                 <p><?php echo($politicsArticles[1][2]); ?></p>
+            </section>
+            <section id="category-entry">
+                <h3><?php echo($politicsArticles[2][0]); ?></h3>
+                <img src=<?php echo($politicsArticles[2][1]); ?> height="200vw" width="350vw" title="PLACEHOLDEr">
+                <p><?php echo($politicsArticles[2][2]); ?></p>
+            </section>
+            <section id="category-entry">
+                <h3><?php echo($politicsArticles[3][0]); ?></h3>
+                <img src=<?php echo($politicsArticles[3][1]); ?> height="200vw" width="350vw" title="PLACEHOLDEr">
+                <p><?php echo($politicsArticles[3][2]); ?></p>
             </section>
         </div>
     </section>
