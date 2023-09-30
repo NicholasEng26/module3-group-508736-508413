@@ -1,6 +1,7 @@
 <?php
     include 'includes/header.php';
     session_start();
+    $_SESSION["LoggedIn"] = false;
 ?>
 
 <section id="login">

@@ -12,7 +12,7 @@ include 'includes/header.php';
     <title>Auth.php</title>
 </head>
 <body>
-    <p>Authenticating your login details.....</p>
+    <p>Authenticating your login details.....</p><br>
 </body>
 </html>
 
@@ -23,12 +23,12 @@ $userName = $_GET['userNameInput'];
 
 $password = $_GET['passwordInput'];
 
-$stmt = $mysqli->prepare("select first_name from users where username='$userName'");
+$stmt = $mysqli->prepare("select first_name, password from users where username='$userName'");
 if(!$stmt){
-	printf("Query Prep Failed: %s\n", $mysqli->error);
+	printf("Query Prep Failed: %s<br>", $mysqli->error);
 	exit;
 }else{
-    printf("Query Prep Success! \n");
+    printf("Query Prep Success! <br>");
 }
 
 
@@ -38,9 +38,18 @@ $result = $stmt->get_result();
 $row = $result->fetch_assoc();
 
 if(!$row){
-    echo "error: user name not found <br>";
+    echo "error: user name not found<br>";
+    echo "<form action = login.php><input type =\"submit\" value = \"Go Back\"></input></form>";
 }else{
-    header("Location: home.php");
+    if($password == $row["password"]){
+        $_SESSION["currUser"] = $userName;
+        $_SESSION["LoggedIn"] = true;
+        header("Location: home.php");
+    }else{
+        echo "incorrect password<br>";
+        echo "<form action = login.php><input type =\"submit\" value = \"Go Back\"></input></form>";
+    }
+   
 }
 
 // echo "<ul>\n";

@@ -2,6 +2,9 @@
     include 'includes/header.php';
     session_start();
 
+    if ($_SESSION["LoggedIn"]){
+        echo "<br> Hello,  $_SESSION[currUser]! <br>";
+    }
     //CREATE TEST DATA ARTICLE FOR TESTING
     $stmt = $mysqli->prepare("select title, short_desc, category, image, article_id from articles where category='politics'");
     if(!$stmt){
