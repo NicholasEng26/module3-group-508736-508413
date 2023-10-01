@@ -44,6 +44,29 @@ body {
 
 /* END OF HOME PAGE CSS */
 
+/* Comments Section */
+
+#comments {
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+}
+
+#comments form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+#comments label, #comments input, #comments textarea {
+    display: block;
+    margin-bottom: 10px;
+}
+textarea {
+    resize: vertical;
+    height: 550px;
+}
+
+/* NavBar */
 nav ul {
     list-style-type: none;
     margin: 0;

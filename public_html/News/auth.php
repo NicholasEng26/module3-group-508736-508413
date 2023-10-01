@@ -23,7 +23,7 @@ $userName = $_GET['userNameInput'];
 
 $password = $_GET['passwordInput'];
 
-$stmt = $mysqli->prepare("select first_name, password from users where username='$userName'");
+$stmt = $mysqli->prepare("select username, password from users where username='$userName'");
 if(!$stmt){
 	printf("Query Prep Failed: %s<br>", $mysqli->error);
 	exit;
@@ -41,7 +41,10 @@ if(!$row){
     echo "error: user name not found<br>";
     echo "<form action = login.php><input type =\"submit\" value = \"Go Back\"></input></form>";
 }else{
-    if($password == $row["password"]){
+    $databasePWD = $row['password'];
+    //$password = password_hash($password, PASSWORD_DEFAULT);
+    echo"password: $password databasepwd: $databasePWD";
+    if(password_verify($password, $databasePWD)){
         $_SESSION["currUser"] = $userName;
         $_SESSION["LoggedIn"] = true;
         header("Location: home.php");

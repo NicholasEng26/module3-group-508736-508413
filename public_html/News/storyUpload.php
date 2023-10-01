@@ -29,7 +29,7 @@ if(!($_SESSION["LoggedIn"])){
     <label for="Technology">Technology</label><br>
     <label for = "storyContent">Content of Story:</label><br>
     <textarea id = "storyContent" name="storyContentInput"> 
-</textarea><br>
+    </textarea><br>
     <label for = "mediaLink">Post any media as a link here: </label><br>
     <input type = "text" id = "mediaLink" name="mediaLinkInput"/><br>
 

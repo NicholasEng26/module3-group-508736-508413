@@ -7,16 +7,31 @@
     </header>
     <main>
         <?php
-            // Simulated article data
-            // $articleID = urldecode($_GET['article_id']);
-            $articleID = $_GET["article_ID"];
-            echo "<p> $articleID </p>";
 
-            //Pull article data from database
-            $articleimage = "https://awlights.com/wp-content/uploads/sites/31/2017/05/placeholder-news.jpg";
-            $articleTitle = "Sample Article Title";
-            $articleAuthor = "Person Doe";
-            $articleContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam massa vitae ex rhoncus sodales. Maecenas sit amet condimentum libero. Nullam vel odio ac arcu posuere blandit a in quam. Nulla facilisi. Phasellus vitae libero nec arcu venenatis varius. Fusce tristique elit at libero posuere, id condimentum libero volutpat. Sed non aliquam metus, non dapibus ex. Sed vel mi vel enim congue vulputate. Suspendisse potenti. Nulla luctus massa non risus bibendum, non vestibulum purus malesuada.";
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                // Retrieve data from the form
+                $article_id = $_POST['article_id'];
+                // echo "<p>article_id:" . $article_id . "</p>";
+
+                // Pull article data from database
+                $stmt = $mysqli->prepare("select * from articles where article_id='$article_id'");
+                if(!$stmt){
+                    printf("Query Prep Failed: %s\n", $mysqli->error);
+                    exit;
+                }
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $row = $result->fetch_assoc();
+
+                $articleTitle = $row["title"];
+                $articleimage = $row["image"];
+                $articleAuthor = $row["owner"];
+                $articleContent = $row["content"];
+               
+            } else {
+                echo "<p>article_id: not set</p>";
+            }
+           
 
             // Display the article
             echo "<div class='article'>";
@@ -27,7 +42,38 @@
             echo "</div>";
         ?>
         <!-- Insert Comments -->
+        
     </main>
+    <div id="comments">
+        <h1>Comments Section</h1>
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+            <label for="name">Username:</label><br> 
+            <input disabled type="text" id="username" name="username" value= <?php echo($_SESSION['currUser']); ?>> <br><br>
+            <label for="comment">Comment:</label> <br>
+            <textarea id="comment" name="comment" required></textarea> <br>
+            <input type="submit" value="Comment">
+        </form>
+    </div>
+ 
+    <?php 
+        $username = $_POST['username'];
+        $content = $_POST['comment'];
+
+        $stmt = $mysqli->prepare("insert into comments (article_id, content, comment_id, owner) values (?, ?, ?, ?, ?, ?, ?)");
+        if(!$stmt){
+            printf("Query Prep Failed: %s\n", $mysqli->error);
+            exit;
+        }else{
+            echo"<br>connected ig?";
+        }
+
+        $stmt->bind_param('sssssis', $username, $content, $media, $articleid, $username);
+        if(!$stmt->execute())
+        {echo"<br>There was an error...<br>";
+        }
+
+        $stmt->close();
+    ?>
 <?php
     include 'includes/footer.php';
 ?>
