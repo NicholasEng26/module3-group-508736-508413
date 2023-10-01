@@ -1,9 +1,13 @@
 <?php 
-
-    $owner = $_POST['owner'];
+    session_start();
+    include 'includes/header.php';
+    $owner = $_POST['ownerVal'];
     $content = $_POST['comment'];
-    $article_id = $_POST['article_id'];
+    $article_id = $_POST['articleidVal'];
+    $comment_id = NULL;
 
+
+    echo "owner: $owner content: $content article_id: $article_id coid: $comment_id";
     $stmt = $mysqli->prepare("insert into comments (article_id, content, comment_id, owner) values (?, ?, ?, ?)");
     if(!$stmt){
         printf("Query Prep Failed: %s\n", $mysqli->error);

@@ -46,9 +46,9 @@
     <div id="comments">
         <h1>Comments Section</h1>
         <form action="commentCreate.php" method="POST">
-            <label for="owner">Username:</label><br> 
-            <input disabled type="text" id="owner" name="owner" value= <?php echo($_SESSION['currUser']); ?>> <br><br>
-            <input disabled type="text" id="article_id" name="article_id" value= <?php echo($article_id); ?>> <br>
+            <label for="owner">Username: <?php echo($_SESSION['currUser']);?></label><br> 
+            <input type="hidden" id="owner" name="ownerVal" value= "<?php echo($_SESSION['currUser']); ?>"> <br>
+            <input type="hidden" id="article_id" name="articleidVal" value= "<?php echo($article_id); ?>"> <br>
             <label for="comment">Comment:</label> <br>
             <textarea id="comment" name="comment" required></textarea> <br>
             <input type="submit" value="Comment">
