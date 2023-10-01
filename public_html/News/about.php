@@ -1,18 +1,17 @@
 <?php
-
-session_start();
 include 'includes/header.php';
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit a new story</title>
+    <title>About Page</title>
 </head>
 <body>
-<h2>Here's all your past published stories:</h2>
-
+    <h1>Some News Net Work</h1>
+    <h2>About:</h2>
+    <p>Provides news to individuals in society.</p>
 </body>
 </html>
