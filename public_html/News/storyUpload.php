@@ -2,6 +2,9 @@
 
 session_start();
 include 'includes/header.php';
+if(!($_SESSION["LoggedIn"])){
+    header("Location: login.php");
+}
 
 ?>
 <!DOCTYPE html>
@@ -67,8 +70,6 @@ if(!$stmt){
 $stmt->bind_param('sssssis', $title, $summary, $cat, $content, $media, $articleid, $username);
 if(!$stmt->execute())
 {echo"<br>There was an error...<br>";
-}else{
-    echo "<br>something works<br>";
 }
 
 $stmt->close();

@@ -19,18 +19,19 @@
     echo "<ul>\n";
     $politicsArticles = array();
     $index = 0;
+
+
     while($row = $result->fetch_assoc()){
 
-        $temp = array( $row["title"], $row["image"],  $row["short_desc"]);
+        $temp = array( $row["title"], $row["image"],  $row["short_desc"], $row["article_id"] );
         $politicsArticles[$index] = $temp;
         $index++;
         printf("\t<li>%s %s %s</li>\n",
             htmlspecialchars( $row["title"] ),
             htmlspecialchars( $row["image"] ),
-            htmlspecialchars( $row["short_desc"] )         
-            
+            htmlspecialchars( $row["short_desc"] ),
+            htmlspecialchars( $row["article_id"] )        
         );
-
 
     }
     echo "</ul>\n";
@@ -54,7 +55,10 @@
         <div class="home-flex-container">
             <section id="category-entry">
                 <h3><?php echo($politicsArticles[0][0]); ?></h3>
-                <img src=<?php echo($politicsArticles[0][1]); ?> height="200vw" width="350vw" title="PLACEHOLDEr">
+                <form action="/article.php" method="post">
+                    <input disabled type="text" id="article_id" name="article_id" value= <?php echo($politicsArticles[0][3]); ?>>
+                    <input type="image" src=<?php echo($politicsArticles[0][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
+                </form>
                 <p><?php echo($politicsArticles[0][2]); ?></p>
             </section>
             <section id="category-entry">

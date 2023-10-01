@@ -8,7 +8,9 @@
     <main>
         <?php
             // Simulated article data
-            $articleID = urldecode($_GET['article_id']);
+            // $articleID = urldecode($_GET['article_id']);
+            $articleID = $_GET["article_ID"];
+            echo "<p> $articleID </p>";
 
             //Pull article data from database
             $articleimage = "https://awlights.com/wp-content/uploads/sites/31/2017/05/placeholder-news.jpg";
