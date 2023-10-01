@@ -4,21 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sample Article Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-        }
-        h1 {
-            color: #333;
-        }
-        .article {
-            background-color: #f9f9f9;
-            padding: 20px;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-    </style>
+    
 </head>
 <body>
     <header>
@@ -27,7 +13,8 @@
     <main>
         <?php
             // Simulated article data
-
+            require 'database/config.php';
+ 
             $article_id = $_POST['article_id'];
             $content = $_POST['content'];
             $comment_id = $_POST['comment_id'];

@@ -72,10 +72,10 @@
             echo '<p><strong>Comment:</strong> ' . $row['content'] . '</p>';
             if ($row['owner'] == $_SESSION['currUser']) {
                 echo "<form action='commentEdit.php' method='POST'> 
-                <input  type='text' id='article_id' name='article_id' value='" . $article_id . "'> 
-                <input  type='text' id='content' name='content' value='" . $row['content'] . "'>
-                <input  type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
-                <input  type='text' id='owner' name='owner' value='" . $row['owner'] . "'> 
+                <input hidden type='text' id='article_id' name='article_id' value='" . $article_id . "'> 
+                <input hidden type='text' id='content' name='content' value='" . $row['content'] . "'>
+                <input hidden type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
+                <input hidden type='text' id='owner' name='owner' value='" . $row['owner'] . "'> 
                 <input type='submit' value='Edit'> 
                 </form>";
             }

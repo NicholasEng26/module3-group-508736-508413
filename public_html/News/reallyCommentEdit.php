@@ -12,6 +12,7 @@
     <main>
         <?php
             // Simulated article data
+            require 'database/config.php';
 
             $article_id = $_POST['article_id'];
             $content = $_POST['content'];
