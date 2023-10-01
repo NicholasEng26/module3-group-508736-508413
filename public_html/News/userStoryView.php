@@ -38,6 +38,12 @@ while($row = $result->fetch_assoc()){
 
 	);
 
+    $articleID = $row["article_id"];
+    echo "<form action=\"storyDel.php\" method = \"GET\">
+    <input type=\"hidden\" name= \"articleID\" value=$articleID>
+    <button type=\"submit\" name=\"submit\">Delete</button>
+    </form>";
+
 }
 echo "</ul>\n";
 

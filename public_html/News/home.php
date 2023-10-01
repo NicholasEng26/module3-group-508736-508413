@@ -157,7 +157,7 @@
         <h2 id="category_name"><u>Business</u></h2>
         <div class="home-flex-container">
         <section id="category-entry">
-                <h3><?php echo($buinsess[0][0]); ?></h3>
+                <h3><?php echo($businessArticles[0][0]); ?></h3>
                 <form action="article.php" method="post">
                     <input hidden type="text" id="article_id" name="article_id" value= <?php echo($businessArticles[0][3]); ?>>
                     <input type="image" src=<?php echo($businessArticles[0][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
