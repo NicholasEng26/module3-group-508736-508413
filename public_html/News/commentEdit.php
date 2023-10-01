@@ -27,18 +27,22 @@
     <main>
         <?php
             // Simulated article data
-            $articleTitle = "Sample Article Title";
-            $articleAuthor = "John Doe";
-            $articleDate = "September 30, 2023";
-            $articleContent = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam massa vitae ex rhoncus sodales. Maecenas sit amet condimentum libero. Nullam vel odio ac arcu posuere blandit a in quam. Nulla facilisi. Phasellus vitae libero nec arcu venenatis varius. Fusce tristique elit at libero posuere, id condimentum libero volutpat. Sed non aliquam metus, non dapibus ex. Sed vel mi vel enim congue vulputate. Suspendisse potenti. Nulla luctus massa non risus bibendum, non vestibulum purus malesuada.";
 
+            $article_id = $_POST['article_id'];
+            $content = $_POST['content'];
+            $comment_id = $_POST['comment_id'];
+            $owner= $_POST['owner'];
+          
             // Display the article
-            echo "<div class='article'>";
-            echo "<h2>$articleTitle</h2>";
-            echo "<p><strong>Author:</strong> $articleAuthor</p>";
-            echo "<p><strong>Date:</strong> $articleDate</p>";
-            echo "<p>$articleContent</p>";
-            echo "</div>";
+            echo "<form action='reallyCommentEdit.php' method='POST'> 
+                <input hidden type='text' id='article_id' name='article_id' value='" . $article_id . "'> 
+                <label for='owner'>Username:</label> <br>
+                <input type='text' id='owner' name='owner' value='" . $owner . "' readonly> <br><br>
+                <label for='content'>Comment:</label> <br>
+                <input type='text' id='content' name='content' value='" . $content . "'>
+                <input hidden type='text' id='comment_id' name='comment_id' value='" . $comment_id . "'> <br><br>
+                <input type='submit' value='Edit Comment'> 
+                </form>";
         ?>
     </main>
 </body>

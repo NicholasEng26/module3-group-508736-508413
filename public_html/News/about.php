@@ -13,5 +13,7 @@ include 'includes/header.php';
     <h1>Some News Net Work</h1>
     <h2>About:</h2>
     <p>Provides news to individuals in society.</p>
-</body>
-</html>
+
+<?php 
+    include 'includes/footer.php';
+?>

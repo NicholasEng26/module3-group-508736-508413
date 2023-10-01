@@ -1,6 +1,9 @@
 <?php
     include 'includes/header.php';
     session_start();
+    if($_SESSION["LoggedIn"]){
+        header("Location: home.php");
+    }
     $_SESSION["LoggedIn"] = false;
 ?>
 

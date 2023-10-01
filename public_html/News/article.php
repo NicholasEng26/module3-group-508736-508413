@@ -46,12 +46,12 @@
     <div id="comments">
         <h1>Comments Section</h1>
         <form action="commentCreate.php" method="POST">
-            <label for="owner">Username: <?php echo($_SESSION['currUser']);?></label><br> 
+            <label for="owner">Username: <?php if(!$_SESSION["LoggedIn"]){echo('<strong><em>User not logged in. Login to comment.</em></strong>');}?></label><br> 
             <input type="hidden" id="owner" name="ownerVal" value= "<?php echo($_SESSION['currUser']); ?>"> <br>
             <input type="hidden" id="article_id" name="articleidVal" value= "<?php echo($article_id); ?>"> <br>
             <label for="comment">Comment:</label> <br>
-            <textarea id="comment" name="comment" required></textarea> <br>
-            <input type="submit" value="Comment">
+            <textarea id="comment" name="comment" <?php if(!$_SESSION["LoggedIn"]){echo('disabled');}?> required></textarea> <br>
+            <input type="submit" value="Comment" <?php if(!$_SESSION["LoggedIn"]){echo("disabled");}?>>
         </form>
     </div>
  
@@ -71,22 +71,19 @@
             echo '<p><strong>Username:</strong> ' . $row['owner'] . '</p>';
             echo '<p><strong>Comment:</strong> ' . $row['content'] . '</p>';
             if ($row['owner'] == $_SESSION['currUser']) {
-                echo "<form action='commentEdit.php' method='post'> <input hidden type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> <input type='submit' value='Edit'> </form>";
+                echo "<form action='commentEdit.php' method='POST'> 
+                <input  type='text' id='article_id' name='article_id' value='" . $article_id . "'> 
+                <input  type='text' id='content' name='content' value='" . $row['content'] . "'>
+                <input  type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
+                <input  type='text' id='owner' name='owner' value='" . $row['owner'] . "'> 
+                <input type='submit' value='Edit'> 
+                </form>";
             }
             echo '</div>';
         }
 
         $stmt->close();
-       
-        foreach ($comment_arr as $comment) {
-           
-        }
     ?>
-
-    <!-- <div class="comment">
-        <p><strong>Username:</strong>Owner</p>
-        <p><strong>Comment:</strong>Comment here!</p>
-    </div> -->
 <?php
     include 'includes/footer.php';
 ?>
