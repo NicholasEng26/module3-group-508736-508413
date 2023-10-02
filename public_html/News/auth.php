@@ -47,7 +47,7 @@ if(!$row){
     if(password_verify($password, $databasePWD)){
         $_SESSION["currUser"] = $userName;
         $_SESSION["LoggedIn"] = true;
-        $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(32));; //uses rando_int to generate a token for CSRF Token auth
+        $_SESSION["token"] = bin2hex(openssl_random_pseudo_bytes(32)); //uses rando_int to generate a token for CSRF Token auth
         header("Location: home.php");
     }else{
         echo "incorrect password<br>";

@@ -31,7 +31,7 @@ if(!$stmt){
 	printf("Query Prep Failed: %s<br>", $mysqli->error);
 	exit;
 }else{
-    header("Location: home.php");
+    header("Location: profile.php");
 }
 
 $stmt->execute();

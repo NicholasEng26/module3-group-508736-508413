@@ -35,6 +35,7 @@ if(!($_SESSION["LoggedIn"])){
     <label for = "externalURL">Post any external URLs: </label><br>
     <input type = "text" id = "urlLink" name="urlInput"/><br>
     <input type="hidden" name="authToken" value="<?php echo $_SESSION['token'];?>" />
+    <input type="hidden" name="submitStatus" value="true" />
     <button type="submit" name="submit">Submit the story</button>
 
 </form>
@@ -45,43 +46,48 @@ if(!($_SESSION["LoggedIn"])){
 
 <?php
 
-$authToken = $_POST['authToken'];
-if(!hash_equals($_SESSION['token'], $authToken)){
-       
-    die("Warning: someone tried to forge a request");
+$submitStatus = $_POST['submitStatus'];
+if(isset($submitStatus)){
+
+    $authToken = $_POST['authToken'];
+
+    if(!hash_equals($_SESSION['token'], $authToken)){
+        die("Warning: someone tried to forge a request");
+    }
+    
+    $title = $_POST['storyTitleInput'];
+    $summary = $_POST['shortDescInput'];
+    $content = $_POST['storyContentInput'];
+    $media = $_POST['mediaLinkInput'];
+    $cat = $_POST['Category'];
+    $username = $_SESSION['currUser'];
+    $url = $_POST['urlInput'];
+    $articleid = null; //will use autoincrement
+    
+    
+    echo "<h3>Story Preview for $username: </h3><br>";
+    echo "<br> Category: $cat <br>";
+    echo "<b>Titile:</b> <br>$title<br>";
+    echo "<b>Short Description:</b> <br>$summary<br>";
+    echo "<b>Content:</b> <br>$content<br>";
+    echo "<iframe src = $media height=\"400vw\" width=\"400vw\" title=\"PLACEHOLDER\"><br>";
+    echo "<b>External URLs:</b> <br>$content<br>";
+    
+    $stmt = $mysqli->prepare("insert into articles (title, short_desc, category, content, image, article_id, owner) values (?, ?, ?, ?, ?, ?, ?)");
+    if(!$stmt){
+        printf("Query Prep Failed: %s\n", $mysqli->error);
+        exit;
+    }
+    
+    $stmt->bind_param('sssssis', $title, $summary, $cat, $content, $media, $articleid, $username);
+    if(!$stmt->execute())
+    {echo"<br>There was an error...<br>";
+    }
+    
+    $stmt->close();
+    
+
+
 }
-
-$title = $_POST['storyTitleInput'];
-$summary = $_POST['shortDescInput'];
-$content = $_POST['storyContentInput'];
-$media = $_POST['mediaLinkInput'];
-$cat = $_POST['Category'];
-$username = $_SESSION['currUser'];
-$url = $_POST['urlInput'];
-$articleid = null; //will use autoincrement
-
-
-echo "<h3>Story Preview for $username: </h3><br>";
-echo "<br> Category: $cat <br>";
-echo "<b>Titile:</b> <br>$title<br>";
-echo "<b>Short Description:</b> <br>$summary<br>";
-echo "<b>Content:</b> <br>$content<br>";
-echo "<iframe src = $media height=\"400vw\" width=\"400vw\" title=\"PLACEHOLDER\"><br>";
-echo "<b>External URLs:</b> <br>$content<br>";
-
-$stmt = $mysqli->prepare("insert into articles (title, short_desc, category, content, image, article_id, owner) values (?, ?, ?, ?, ?, ?, ?)");
-if(!$stmt){
-	printf("Query Prep Failed: %s\n", $mysqli->error);
-	exit;
-}else{
-    echo"<br>connected ig?";
-}
-
-$stmt->bind_param('sssssis', $title, $summary, $cat, $content, $media, $articleid, $username);
-if(!$stmt->execute())
-{echo"<br>There was an error...<br>";
-}
-
-$stmt->close();
 
 ?>
