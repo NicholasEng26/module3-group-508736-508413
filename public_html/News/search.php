@@ -37,7 +37,7 @@
                         echo "<img src='$articleImage' width='500vw' length='7x50vw' alt='Article Image'>";
                         echo "<p><strong>By:</strong> $articleAuthor</p>";
                         echo "<p>$articleSummary</p>";
-                        echo "<form action=\"article.php\" method = \"POST\">
+                        echo "<form action=\"article.php\" method = \"GET\">
                         <input type=\"hidden\" id=\"article_id\" name=\"article_id\" value='" . $article_id . "'>
                         <input type=\"submit\" value=\"Read More\"?>
                         </form>";
