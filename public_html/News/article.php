@@ -54,6 +54,12 @@
             echo "<p><strong>Author:</strong> $articleAuthor</p>";
             echo "<img src='$articleImage' with='200px' length='600px' alt='Article Image'>";
             echo "<p>$articleContent</p>";
+            echo "<p> <b>External URLs:</b> </p>";
+            if(isset($articleURL)){
+                echo "<a href='$articleURL'>External URL</a>";
+            }else{
+                echo"<p> Author did not provide any external urls</p>";
+            }
             echo "</div>";
         ?>
         <!-- Insert Comments -->
