@@ -48,7 +48,7 @@ if($password != $passwordConfirm){
         echo "<form action = login.php><input type =\"submit\" value = \"Go Back\"></input></form>";
     }else{
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        echo($hashedPassword);
+    
 
         $stmt = $mysqli->prepare("insert into users (username, password, adminRights) values (?, ?, ?)");
         if(!$stmt){

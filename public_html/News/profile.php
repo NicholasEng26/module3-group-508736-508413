@@ -26,5 +26,11 @@ if(!($_SESSION["LoggedIn"])){
     <form action = userStoryView.php><input type ="submit" value = "Go"></input></form>
     <!-- <h3>View/Edit/Delete Comments</h3>
     <form action = commentEdit.php><input type ="submit" value = "Go"></input></form> -->
+
+    
 </body>
 </html>
+
+<?php
+    include 'includes/footer.php';
+?>

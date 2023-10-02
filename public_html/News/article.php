@@ -26,9 +26,17 @@
                 $articleTitle = $row["title"];
                 $articleImage = $row["image"];
                 $articleAuthor = $row["owner"];
-                $articleContent = $row["content"];
+                $articleContent = htmlspecialchars($row["content"]);
                 $articleSummary = $row["short_desc"];
                 $articleURL = $row["urls"];
+
+                // Get the number of likes for the article
+                $stmt = $mysqli->prepare("SELECT * FROM likes WHERE article_id = ?");
+                $stmt->bind_param('i', $article_id);
+                $stmt->execute();
+                $result = $stmt->get_result();
+                $numLikes = $result->num_rows;
+                $stmt->close();
 
             } else {
                 echo "<p>article_id: not set</p>";
@@ -59,9 +67,10 @@
             }else{
                 echo"<p> Author did not provide any external urls</p>";
             }
-            
+
+            echo "<p><strong>Number of Likes:</strong> $numLikes</p>";
             echo "<form action='like.php' method='POST'>
-                <input type='hidden' id='article_id' name='article_id' value='<?php echo($article_id); ?>'>
+                <input type='hidden' id='article_id' name='article_id' value=$article_id>
                 <input type='image' src='https://cdn3.emoji.gg/emojis/Like.png' width='50px' height='50px' alt='Submit'>
                 </form>";
 
@@ -101,7 +110,7 @@
             if ($row['owner'] == $_SESSION['currUser']) {
                 echo "<form action='commentEdit.php' method='POST'> 
                 <input hidden type='text' id='article_id' name='article_id' value='" . $article_id . "'> 
-                <input hidden type='text' id='content' name='content' value='" . $row['content'] . "'>
+                <input hidden type='text' id='content' name='content' value='" . htmlspecialchars($row['content']) . "'>
                 <input hidden type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
                 <input hidden type='text' id='owner' name='owner' value='" . $row['owner'] . "'> 
                 <input type='hidden' name='authToken' value='" . $_SESSION['token'] . "' >
