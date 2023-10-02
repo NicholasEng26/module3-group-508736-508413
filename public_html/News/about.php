@@ -10,9 +10,10 @@ include 'includes/header.php';
     <title>About Page</title>
 </head>
 <body>
-    <h1>Some News Net Work</h1>
+    <h1>Smurf Cat News Net Work</h1>
     <h2>About:</h2>
-    <p>Provides news to individuals in society.</p>
+    <p>We are dedicated to providing information-containing news to individuals who live in a society.</p>
+    <img src="https://i.kym-cdn.com/photos/images/newsfeed/002/652/421/280.jpg" alt="blue smurf cat">
 
 <?php 
     include 'includes/footer.php';

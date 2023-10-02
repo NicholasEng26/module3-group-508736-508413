@@ -44,6 +44,12 @@ while($row = $result->fetch_assoc()){
     <button type=\"submit\" name=\"submit\">Delete</button>
     </form>";
 
+    echo"<form action=\"article.php\" method=\"post\">
+    <input hidden type=\"text\" id=\"article_id\" name=\"article_id\" value=$articleID>
+    <input type=\"submit\" value=\"View\">
+    </form>";
+
+
 }
 echo "</ul>\n";
 

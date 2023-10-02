@@ -3,7 +3,7 @@
     session_start();
 ?>
     <header>
-        <h1>Sample Article Page</h1>
+        <h1>Smurf Cat News Network</h1>
     </header>
     <main>
         <?php
@@ -24,19 +24,35 @@
                 $row = $result->fetch_assoc();
 
                 $articleTitle = $row["title"];
-                $articleimage = $row["image"];
+                $articleImage = $row["image"];
                 $articleAuthor = $row["owner"];
                 $articleContent = $row["content"];
+                $articleSummary = $row["short_desc"];
+                $articleURL = $row["urls"];
 
             } else {
                 echo "<p>article_id: not set</p>";
             }
 
+            if($_SESSION['LoggedIn'] && $_SESSION['currUser'] == $articleAuthor){
+                echo "<form action=\"articleEdit.php\" method = \"GET\">
+                <input type=\"hidden\" id=\"article_id\" name=\"articleidVal\" value='" . $article_id . "'>
+                <input type=\"hidden\" id=\"title_id\" name=\"titleVal\" value='" . $articleTitle . "'>
+                <input type=\"hidden\" id=\"owner_id\" name=\"ownerVal\" value='" . $articleAuthor . "'>
+                <input type=\"hidden\" id=\"content_id\" name=\"contentVal\" value='" . $articleContent . "'>
+                <input type=\"hidden\" id=\"image_id\" name=\"imageVal\" value='" . $articleImage . "'>
+                <input type=\"hidden\" id=\"summary_id\" name=\"summaryVal\" value='" . $articleSummary . "'>
+                <input type=\"hidden\" id=\"url_id\" name=\"urlVal\" value='" . $articleURL . "'>
+                <input type=\"submit\" value=\"Edit Story\"?>
+                </form>";
+
+            }
+           
             // Display the article
             echo "<div class='article'>";
             echo "<h2>$articleTitle</h2>";
             echo "<p><strong>Author:</strong> $articleAuthor</p>";
-            echo "<img src='$articleimage' with='200px' length='600px' alt='Article Image'>";
+            echo "<img src='$articleImage' with='200px' length='600px' alt='Article Image'>";
             echo "<p>$articleContent</p>";
             echo "</div>";
         ?>
@@ -47,7 +63,7 @@
         <h1>Comments Section</h1>
         <form action="commentCreate.php" method="POST">
             <label for="owner">Username: <?php if(!$_SESSION["LoggedIn"]){echo('<strong><em>User not logged in. Login to comment.</em></strong>');}?></label><br> 
-            <input type="hidden" id="owner" name="ownerVal" value= "<?php echo($_SESSION['currUser']); ?>"> <br>
+            <input type="text" readonly="readonly" id="owner" name="ownerVal" value= "<?php echo($_SESSION['currUser']); ?>"> <br>
             <input type="hidden" id="article_id" name="articleidVal" value= "<?php echo($article_id); ?>"> <br>
             <label for="comment">Comment:</label> <br>
             <textarea id="comment" name="comment" <?php if(!$_SESSION["LoggedIn"]){echo('disabled');}?> required></textarea> <br>
@@ -78,6 +94,10 @@
                 <input hidden type='text' id='owner' name='owner' value='" . $row['owner'] . "'> 
                 <input type='submit' value='Edit'> 
                 </form>";
+
+                echo "<form action='commentDelete.php' method='post'>
+                 <input hidden type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
+                 <input type='submit' value='Delete'> </form>";
             }
             echo '</div>';
         }
