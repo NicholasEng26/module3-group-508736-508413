@@ -3,7 +3,7 @@
     session_start();
 ?>
     <header>
-        <h1>Smurf Cat News Network</h1>
+        <h1>HN News Network</h1>
     </header>
     <main>
         <?php
