@@ -78,6 +78,7 @@
             <input type="hidden" id="article_id" name="articleidVal" value= "<?php echo($article_id); ?>"> <br>
             <label for="comment">Comment:</label> <br>
             <textarea id="comment" name="comment" <?php if(!$_SESSION["LoggedIn"]){echo('disabled');}?> required></textarea> <br>
+            <input type="hidden" name="authToken" value="<?php echo $_SESSION['token'];?>" />
             <input type="submit" value="Comment" <?php if(!$_SESSION["LoggedIn"]){echo("disabled");}?>>
         </form>
     </div>
@@ -103,11 +104,13 @@
                 <input hidden type='text' id='content' name='content' value='" . $row['content'] . "'>
                 <input hidden type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
                 <input hidden type='text' id='owner' name='owner' value='" . $row['owner'] . "'> 
+                <input type='hidden' name='authToken' value='" . $_SESSION['token'] . "' >
                 <input type='submit' value='Edit'> 
                 </form>";
 
                 echo "<form action='commentDelete.php' method='post'>
                  <input hidden type='text' id='comment_id' name='comment_id' value='" . $row['comment_id'] . "'> 
+                 <input type='hidden' name='authToken' value='" . $_SESSION['token'] . "' >
                  <input type='submit' value='Delete'> </form>";
             }
             echo '</div>';

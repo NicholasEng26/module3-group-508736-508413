@@ -39,8 +39,9 @@ while($row = $result->fetch_assoc()){
 	);
 
     $articleID = $row["article_id"];
-    echo "<form action=\"storyDel.php\" method = \"GET\">
+    echo "<form action=\"storyDel.php\" method = \"POST\">
     <input type=\"hidden\" name= \"articleID\" value=$articleID>
+    <input type='hidden' name='authToken' value='" . $_SESSION['token'] . "' >
     <button type=\"submit\" name=\"submit\">Delete</button>
     </form>";
 

@@ -14,7 +14,13 @@
         <?php
             // Simulated article data
             require 'database/config.php';
- 
+            session_start();
+            $authToken = $_POST['authToken'];
+
+        if(!hash_equals($_SESSION['token'], $authToken)){
+            die("Warning: someone tried to forge a request");
+        } else{
+
             $article_id = $_POST['article_id'];
             $content = $_POST['content'];
             $comment_id = $_POST['comment_id'];
@@ -28,8 +34,10 @@
                 <label for='content'>Comment:</label> <br>
                 <input type='text' id='content' name='content' value='" . $content . "'>
                 <input hidden type='text' id='comment_id' name='comment_id' value='" . $comment_id . "'> <br><br>
+                <input type='hidden' name='authToken' value='" . $_SESSION['token'] . "' >
                 <input type='submit' value='Edit Comment'> 
                 </form>";
+    }
         ?>
     </main>
 </body>

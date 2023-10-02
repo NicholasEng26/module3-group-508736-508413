@@ -10,6 +10,13 @@
 </html>
 
 <?php 
+
+$authToken = $_POST['authToken'];
+
+if(!hash_equals($_SESSION['token'], $authToken)){
+    die("Warning: someone tried to forge a request");
+} else{
+
     $comment_id = $_POST['comment_id'];
     $username = $_SESSION['currUser'];
 
@@ -29,4 +36,5 @@
     $stmt->close();
 
     include 'includes/footer.php';
+}
 ?>

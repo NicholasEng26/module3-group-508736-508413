@@ -13,7 +13,12 @@
         <?php
             // Simulated article data
             require 'database/config.php';
+            session_start();
+            $authToken = $_POST['authToken'];
 
+            if(!hash_equals($_SESSION['token'], $authToken)){
+                die("Warning: someone tried to forge a request");
+            } else{
             $article_id = $_POST['article_id'];
             $content = $_POST['content'];
             $comment_id = $_POST['comment_id'];
@@ -36,6 +41,7 @@
 
             $stmt->execute();
             $stmt->close();
+        }
         ?>
     </main>
 </body>

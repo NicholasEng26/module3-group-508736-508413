@@ -53,38 +53,42 @@ if(isset($submitStatus)){
 
     if(!hash_equals($_SESSION['token'], $authToken)){
         die("Warning: someone tried to forge a request");
+    } else{
+
+        $title = $_POST['storyTitleInput'];
+        $summary = $_POST['shortDescInput'];
+        $content = $_POST['storyContentInput'];
+        $media = $_POST['mediaLinkInput'];
+        $cat = $_POST['Category'];
+        $username = $_SESSION['currUser'];
+        $url = $_POST['urlInput'];
+        $articleid = null; //will use autoincrement
+        
+        
+        echo "<h3>Story Preview for $username: </h3><br>";
+        echo "<br> Category: $cat <br>";
+        echo "<b>Titile:</b> <br>$title<br>";
+        echo "<b>Short Description:</b> <br>$summary<br>";
+        echo "<b>Content:</b> <br>$content<br>";
+        echo "<iframe src = $media height=\"400vw\" width=\"400vw\" title=\"PLACEHOLDER\"><br>";
+        echo "<b>External URLs:</b> <br>$content<br>";
+        
+        $stmt = $mysqli->prepare("insert into articles (title, short_desc, category, content, image, article_id, owner) values (?, ?, ?, ?, ?, ?, ?)");
+        if(!$stmt){
+            printf("Query Prep Failed: %s\n", $mysqli->error);
+            exit;
+        }
+        
+        $stmt->bind_param('sssssis', $title, $summary, $cat, $content, $media, $articleid, $username);
+        if(!$stmt->execute())
+        {echo"<br>There was an error...<br>";
+        }
+        
+        $stmt->close();
+
     }
     
-    $title = $_POST['storyTitleInput'];
-    $summary = $_POST['shortDescInput'];
-    $content = $_POST['storyContentInput'];
-    $media = $_POST['mediaLinkInput'];
-    $cat = $_POST['Category'];
-    $username = $_SESSION['currUser'];
-    $url = $_POST['urlInput'];
-    $articleid = null; //will use autoincrement
     
-    
-    echo "<h3>Story Preview for $username: </h3><br>";
-    echo "<br> Category: $cat <br>";
-    echo "<b>Titile:</b> <br>$title<br>";
-    echo "<b>Short Description:</b> <br>$summary<br>";
-    echo "<b>Content:</b> <br>$content<br>";
-    echo "<iframe src = $media height=\"400vw\" width=\"400vw\" title=\"PLACEHOLDER\"><br>";
-    echo "<b>External URLs:</b> <br>$content<br>";
-    
-    $stmt = $mysqli->prepare("insert into articles (title, short_desc, category, content, image, article_id, owner) values (?, ?, ?, ?, ?, ?, ?)");
-    if(!$stmt){
-        printf("Query Prep Failed: %s\n", $mysqli->error);
-        exit;
-    }
-    
-    $stmt->bind_param('sssssis', $title, $summary, $cat, $content, $media, $articleid, $username);
-    if(!$stmt->execute())
-    {echo"<br>There was an error...<br>";
-    }
-    
-    $stmt->close();
     
 
 
