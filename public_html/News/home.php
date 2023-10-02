@@ -107,6 +107,8 @@
     // query database for all articles in business category
     // query database for all articles in technology category
 ?>
+
+
 <div id="home-body">
 
     <div id="breadking_news">
@@ -118,69 +120,35 @@
     <section id="category">
         <h2 id="category_name"><u>Politics</u></h2>
         <div class="home-flex-container">
-            <section id="category-entry">
-                <h3><?php echo($politicsArticles[0][0]); ?></h3>
-                <form action="article.php" method="post">
-                    <input hidden type="text" id="article_id" name="article_id" value= <?php echo($politicsArticles[0][3]); ?>>
-                    <input type="image" src=<?php echo($politicsArticles[0][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
-                </form>
-                <p><?php echo($politicsArticles[0][2]); ?></p>
-            </section>
-            <section id="category-entry">
-                <h3><?php echo($politicsArticles[1][0]); ?></h3>
-                <form action="article.php" method="post">
-                    <input hidden type="text" id="article_id" name="article_id" value= <?php echo($politicsArticles[1][3]); ?>>
-                    <input type="image" src=<?php echo($politicsArticles[1][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
-                </form>
-                <p><?php echo($politicsArticles[1][2]); ?></p>
-            </section>
-            <section id="category-entry">
-                <h3><?php echo($politicsArticles[2][0]); ?></h3>
-                <form action="article.php" method="post">
-                    <input hidden type="text" id="article_id" name="article_id" value= <?php echo($politicsArticles[2][3]); ?>>
-                    <input type="image" src=<?php echo($politicsArticles[2][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
-                </form>
-                <p><?php echo($politicsArticles[2][2]); ?></p>
-            </section>
-            <section id="category-entry">
-                <h3><?php echo($politicsArticles[3][0]); ?></h3>
-                <form action="article.php" method="post">
-                    <input hidden type="text" id="article_id" name="article_id" value= <?php echo($politicsArticles[3][3]); ?>>
-                    <input type="image" src=<?php echo($politicsArticles[3][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
-                </form>
-                <p><?php echo($politicsArticles[3][2]); ?></p>
-            </section>
+            <?php for ($i = 0; $i < count($politicsArticles); $i++) { ?>
+                <section id="category-entry">
+                    <h3><?php echo($politicsArticles[$i][0]); ?></h3>
+                    <form action="article.php" method="get">
+                        <input hidden type="text" id="article_id" name="article_id" value= <?php echo($politicsArticles[$i][3]); ?>>
+                        <input type="image" src=<?php echo($politicsArticles[$i][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
+                    </form>
+                    <p><?php echo($politicsArticles[$i][2]); ?></p>
+                </section>
+            <?php } ?>
         </div>
     </section>
 
     <section id="category">
         <h2 id="category_name"><u>Business</u></h2>
         <div class="home-flex-container">
-        <section id="category-entry">
-                <h3><?php echo($businessArticles[0][0]); ?></h3>
-                <form action="article.php" method="post">
-                    <input hidden type="text" id="article_id" name="article_id" value= <?php echo($businessArticles[0][3]); ?>>
-                    <input type="image" src=<?php echo($businessArticles[0][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
-                </form>
-                <p><?php echo($businessArticles[0][2]); ?></p>
-            </section>
-            <section id="category-entry">
-                <h3>News #2</h3>
-                <img src="https://awlights.com/wp-content/uploads/sites/31/2017/05/placeholder-news.jpg" height="200vw" width="350vw" title="PLACEHOLDEr">
-                <p>This is a news article description!</p>
-            </section>
-            <section id="category-entry">
-                <h3>News #3</h3>
-                <img src="https://awlights.com/wp-content/uploads/sites/31/2017/05/placeholder-news.jpg" height="200vw" width="350vw" title="PLACEHOLDEr">
-                <p>This is a news article description!</p>
-            </section>
-            <section id="category-entry">
-                <h3>News #4</h3>
-                <img src="https://awlights.com/wp-content/uploads/sites/31/2017/05/placeholder-news.jpg" height="200vw" width="350vw" title="PLACEHOLDEr">
-                <p>This is a news article description!</p>
-            </section>
+            <?php for ($i = 0; $i < count($businessArticles); $i++) { ?>
+                <section id="category-entry">
+                    <h3><?php echo($businessArticles[$i][0]); ?></h3>
+                    <form action="article.php" method="get">
+                        <input hidden type="text" id="article_id" name="article_id" value= <?php echo($businessArticles[$i][3]); ?>>
+                        <input type="image" src=<?php echo($businessArticles[$i][1]); ?> height="200vw" title="PLACEHOLDER" width="350vw" alt="Submit">
+                    </form>
+                    <p><?php echo($businessArticles[$i][2]); ?></p>
+                </section>
+            <?php } ?>
         </div>
     </section>
+    
 
     <section id="category">
         <h2 id="category_name"><u>Technology</u></h2>

@@ -32,7 +32,9 @@ if(!($_SESSION["LoggedIn"])){
     </textarea><br>
     <label for = "mediaLink">Post any media as a link here: </label><br>
     <input type = "text" id = "mediaLink" name="mediaLinkInput"/><br>
-
+    <label for = "externalURL">Post any external URLs: </label><br>
+    <input type = "text" id = "urlLink" name="urlInput"/><br>
+    <input type="hidden" name="authToken" value="<?php echo $_SESSION['token'];?>" />
     <button type="submit" name="submit">Submit the story</button>
 
 </form>
@@ -43,12 +45,19 @@ if(!($_SESSION["LoggedIn"])){
 
 <?php
 
+$authToken = $_POST['authToken'];
+if(!hash_equals($_SESSION['token'], $authToken)){
+       
+    die("Warning: someone tried to forge a request");
+}
+
 $title = $_POST['storyTitleInput'];
 $summary = $_POST['shortDescInput'];
 $content = $_POST['storyContentInput'];
 $media = $_POST['mediaLinkInput'];
 $cat = $_POST['Category'];
 $username = $_SESSION['currUser'];
+$url = $_POST['urlInput'];
 $articleid = null; //will use autoincrement
 
 
@@ -58,6 +67,7 @@ echo "<b>Titile:</b> <br>$title<br>";
 echo "<b>Short Description:</b> <br>$summary<br>";
 echo "<b>Content:</b> <br>$content<br>";
 echo "<iframe src = $media height=\"400vw\" width=\"400vw\" title=\"PLACEHOLDER\"><br>";
+echo "<b>External URLs:</b> <br>$content<br>";
 
 $stmt = $mysqli->prepare("insert into articles (title, short_desc, category, content, image, article_id, owner) values (?, ?, ?, ?, ?, ?, ?)");
 if(!$stmt){

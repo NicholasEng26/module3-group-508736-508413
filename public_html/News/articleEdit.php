@@ -13,7 +13,6 @@
     $summary = $_GET['summaryVal'];
     $url = $_GET['urlVal'];
 
-    echo($content);
     if($_SESSION['currUser'] != $owner){
         header("Location: home.php");
     }
@@ -27,7 +26,7 @@
     <title>Article Edit Page</title>
 </head>
 <body>
-    <form action= "articleEditProcessor.php" method = "GET">
+    <form action= "articleEditProcessor.php" method = "POST">
         <label for="owner">Author: <?php echo($owner);?></label><br> 
         <input type="text" readonly="readonly" id="owner" name="ownerChangedVal" value=<?php echo($owner); ?>> <br>
         <input type="hidden" id="article_id" name="articleidChangedVal" value= "<?php echo($articleid); ?>"> <br>
@@ -41,6 +40,7 @@
         <input type="text" id="image" name="imageChangedVal" value= "<?php echo($image); ?>"> <br>
         <label for="url">External URL: </label><br>
         <input type="text" id="url" name="urlChangedVal" value= "<?php echo($url); ?>"> <br>
+        <input type="hidden" name="authToken" value="<?php echo $_SESSION['token'];?>" />
         <input type="submit" value="Make Changes" <?php if(!$_SESSION["LoggedIn"]){echo("disabled");}?>>
     </form>
 </body>

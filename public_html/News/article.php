@@ -8,9 +8,9 @@
     <main>
         <?php
 
-            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 // Retrieve data from the form
-                $article_id = $_POST['article_id'];
+                $article_id = $_GET['article_id'];
                 // echo "<p>article_id:" . $article_id . "</p>";
 
                 // Pull article data from database
@@ -45,14 +45,13 @@
                 <input type=\"hidden\" id=\"url_id\" name=\"urlVal\" value='" . $articleURL . "'>
                 <input type=\"submit\" value=\"Edit Story\"?>
                 </form>";
-
             }
            
             // Display the article
             echo "<div class='article'>";
             echo "<h2>$articleTitle</h2>";
-            echo "<p><strong>Author:</strong> $articleAuthor</p>";
-            echo "<img src='$articleImage' with='200px' length='600px' alt='Article Image'>";
+            echo "<img src='$articleImage' width='1080px' length='1440px' alt='Article Image'><br>";
+            echo "<p><strong>By:</strong> $articleAuthor</p>";
             echo "<p>$articleContent</p>";
             echo "<p> <b>External URLs:</b> </p>";
             if(isset($articleURL)){
@@ -60,6 +59,12 @@
             }else{
                 echo"<p> Author did not provide any external urls</p>";
             }
+            
+            echo "<form action='like.php' method='POST'>
+                <input type='hidden' id='article_id' name='article_id' value='<?php echo($article_id); ?>'>
+                <input type='image' src='https://cdn3.emoji.gg/emojis/Like.png' width='50px' height='50px' alt='Submit'>
+                </form>";
+
             echo "</div>";
         ?>
         <!-- Insert Comments -->

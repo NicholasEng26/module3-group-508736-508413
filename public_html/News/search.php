@@ -11,7 +11,7 @@
                 $search_query = $_POST['search_query'];
                 // echo "<p>search_query:" . $search_query . "</p>";
                 // Pull article data from database
-                $stmt = $mysqli->prepare("select * from articles where title like '%$search_query%'");
+                $stmt = $mysqli->prepare("select * from articles where title like '%$search_query%' or content like '%$search_query%'");
                 if(!$stmt){
                     printf("Query Prep Failed: %s\n", $mysqli->error);
                     exit;
@@ -20,9 +20,10 @@
                 $result = $stmt->get_result();
                 $num_rows = $result->num_rows;
                 if($num_rows == 0){
-                    echo "<p>No results found for: $search_query</p>";
+                    echo "<p>No results found for: '$search_query'</p>";
                 }else{
-                    echo "<p>Results for: $search_query</p>";
+                    echo "<p>There are $num_rows results for: $search_query</p>";
+                    echo "<div class='search-articles'>";
                     while($row = $result->fetch_assoc()){
                         $article_id = $row["article_id"];
                         $articleTitle = $row["title"];
@@ -33,8 +34,8 @@
                         $articleURL = $row["urls"];
                         echo "<div class='article'>";
                         echo "<h2>$articleTitle</h2>";
-                        echo "<p><strong>Author:</strong> $articleAuthor</p>";
-                        echo "<img src='$articleImage' width='800px' length='1200px' alt='Article Image'>";
+                        echo "<img src='$articleImage' width='500vw' length='7x50vw' alt='Article Image'>";
+                        echo "<p><strong>By:</strong> $articleAuthor</p>";
                         echo "<p>$articleSummary</p>";
                         echo "<form action=\"article.php\" method = \"POST\">
                         <input type=\"hidden\" id=\"article_id\" name=\"article_id\" value='" . $article_id . "'>
@@ -42,6 +43,8 @@
                         </form>";
                         echo "</div>";
                     }
+                    echo "</div>";
+                    
                 }
             } else {
                 echo "<p>search_query: not set</p>";

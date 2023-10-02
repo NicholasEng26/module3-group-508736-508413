@@ -26,8 +26,9 @@ body {
 /* Homepage Flexbox */
 .home-flex-container {
     display: flex;
+    flex-direction: row;
     background-color: var(--primary-color);
-    justify-content: space-between;
+    justify-content: space-around;
   }
 
   #category-entry {
@@ -35,22 +36,15 @@ body {
     margin: 0%, 0%, 10%, 10%;
 }
   
-/* .home-flex-container > div {
-    background-color: #f1f1f1;
-    margin: 100px;
-    padding: 20px;
-    font-size: 30px;
-} */
 
 /* END OF HOME PAGE CSS */
 
 /* Comments Section */
 
-.comments-section {
+/* .comments-section {
     background-color: var(--primary-color);
     border: 1px solid var(--secondary-color);
     padding: 20px;
-    margin: 20px 0;
 }
 
 #comments form {
@@ -64,7 +58,7 @@ body {
 textarea {
     resize: horizontal;
     height: 250px;
-}
+} */
 
 /* NavBar */
 nav ul {
@@ -74,8 +68,6 @@ nav ul {
     overflow: hidden;
     /* background-color: #333; */
 }
-
-/* Navbar */
 
 nav li {
     float: left;
